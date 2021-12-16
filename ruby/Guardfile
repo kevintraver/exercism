@@ -1,0 +1,11 @@
+require "minitest/reporters"
+Minitest::Reporters.use!
+
+group :red_green_refactor, halt_on_fail: true do
+  guard :minitest, spring: 'ruby', all_on_start: false, test_folders: ["."] do
+    # Re-test test files when they're edited.
+    watch(/\A.+_test\.rb\z/) { |m| "./#{m[1]}" }
+    # Run the test file of the file that was edited.
+    watch(/\A(.+)(?<!_test)\.rb\z/) { |m| "./#{m[1]}_test.rb" }
+  end
+end
