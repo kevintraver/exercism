@@ -9,12 +9,12 @@ on:
   pull_request:
     branches: [ main ]
 
+defaults:
+  run:
+    working-directory: ./javascript
+
 jobs:
   test:
-
-    defaults:
-      run:
-        working-directory: Javascript
 
     runs-on: ubuntu-latest
 
